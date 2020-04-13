@@ -1,23 +1,30 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 #include "Main.h"
 #include "Circle.h"
 #include "Rectangle.h"
-#include "Interface.h"
+// убрал лишние хедеры
 #include "Shape.h"
-#include <iostream>
 
 using namespace sf;
 using namespace std;
 
 auto main() -> int
 {
-	RenderWindow window(VideoMode({ 1380, 768 }), "SFML works!");;
+	ContextSettings settings;			// это настройки графики
+	settings.antialiasingLevel = 2;		// чем выше тем лучше
+										// сделал, чтобы твой комп не умирал от боли
+	
+	RenderWindow window(VideoMode({ 1380, 768 }), "SFML works!");
+	window.setFramerateLimit(60);	    // ограничим возможности твоей программы, а то на мощных компах рывками всЄ
 	Event event{};
 
 	vector<My::Shape*> shapes{};
-	bool ChangeRGBA = true;
-	bool trail = 0;
+	//bool ChangeRGBA = true;     // кто-то €вно схватил
+	//bool trail = 0;			  // бипол€рочку
+	auto ChangeRGBA = true;
+	auto trail = false;
 	auto RGBA = My::Main::COLOR;
 
 	while (window.isOpen())
@@ -106,7 +113,8 @@ auto main() -> int
 				trail = !trail;
 				std::cout << trail << endl;
 			}
-			if (trail == 0)
+			//if (trail == 0) так никто не пишет
+			if (!trail)
 			{
 				window.clear();
 			}

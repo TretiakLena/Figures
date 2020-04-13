@@ -1,42 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <vector>
 #include "Interface.h"
-#include "Main.h"
-#include "Circle.h"
-#include "Rectangle.h"
+// убрал лишние хедеры
 
 using namespace sf;
 using namespace std;
 
 namespace My
 {
-	struct IMove {
-		virtual void ChangePosition(Vector2f xy) abstract;
-		virtual void ChangePosition(float xy)    abstract;
-		virtual void SetPosition(Vector2f xy)    abstract;
-		virtual void SetPosition(float xy)       abstract;
-	};
 
-	struct IDraw {
-		virtual void Draw(RenderWindow& window)              abstract;
-		virtual void SetColor(Color color)                   abstract;
-		virtual void ChangeColor(int r, int g, int b, int a) abstract;
-	};
-
-	struct IScale {
-		virtual void ChangeScale(Vector2f xy) abstract;
-		virtual void ChangeScale(float xy)    abstract;
-		virtual void SetScale(Vector2f xy)    abstract;
-		virtual void SetScale(float xy)       abstract;
-	};
-
-	struct IRotate {
-		virtual void ChangeAngle(float xy) abstract;
-		virtual void SetAngle(float xy)    abstract;
-	};
-
-
+	// очевидно, что нужен .cpp
 	class Shape : public IMove, public IDraw, public IScale, public IRotate {
 	public:
 		//_________________________IMOVE________________________________________
@@ -97,7 +70,7 @@ namespace My
 		Shape(Vector2f center) :                                           Shape(center, Vector2f(1.f, 1.f)) {}
 		Shape(Vector2f center, Vector2f scale) :                           Shape(center, scale, 0.f) {}
 		Shape(Vector2f center, Vector2f scale, float angle) :              Shape(center, scale, angle, Color::Magenta) {}
-		Shape(Vector2f center, Vector2f scale, float angle, Color color) : color(color), center(center), scale(scale), angle(angle) {}
+		Shape(Vector2f center, Vector2f scale, float angle, Color color) : color(color), center(center), scale(scale), angle(angle) {} // ну реально секас
 		virtual ~Shape() = default;
 	private:
 		Vector2f center;

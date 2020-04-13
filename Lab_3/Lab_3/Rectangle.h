@@ -1,12 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <vector>
-#include "Main.h"
-#include "Circle.h"
-#include "Interface.h"
+// убрал лишние хедеры
 #include "Shape.h"
+
 using namespace sf;
 using namespace std;
+
+// очевидно, что нужен .cpp
 namespace My {
 	class Rectangle : public Shape {
 	public:
