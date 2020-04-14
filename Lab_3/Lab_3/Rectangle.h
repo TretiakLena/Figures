@@ -21,10 +21,10 @@ namespace My {
 
 		//_______________________________________CONSTRUCTORS_____________________________________________________________________________
 		Rectangle() : Rectangle(Vector2f(60.f, 60.f)) {}
-		Rectangle(Vector2f size) : size(size) {}
-		Rectangle(Vector2f size, Vector2f center) : size(size), Shape(center) {}
-		Rectangle(Vector2f size, Vector2f center, Vector2f scale) : size(size), Shape(center, scale) {}
-		Rectangle(Vector2f size, Vector2f center, Vector2f scale, float angle) : size(size), Shape(center, scale, angle) {}
+		Rectangle(Vector2f size) :                                                            size(size) {}
+		Rectangle(Vector2f size, Vector2f center) :                                           size(size), Shape(center) {}
+		Rectangle(Vector2f size, Vector2f center, Vector2f scale) :                           size(size), Shape(center, scale) {}
+		Rectangle(Vector2f size, Vector2f center, Vector2f scale, float angle) :              size(size), Shape(center, scale, angle) {}
 		Rectangle(Vector2f size, Vector2f center, Vector2f scale, float angle, Color color) : size(size), Shape(center, scale, angle, color) {}
 		virtual ~Rectangle() = default;
 
