@@ -66,8 +66,8 @@ namespace My
 		}
 
 		//__________________________CONSTRUCTORS______________________________________
-		Shape() :                                                          Shape(Vector2f(0.f, 0.f)) {}
-		Shape(Vector2f center) :                                           Shape(center, Vector2f(1.f, 1.f)) {}
+		Shape() :                                                          Shape({0.f, 0.f}) {}
+		Shape(Vector2f center) :                                           Shape(center, {1.f, 1.f}) {}
 		Shape(Vector2f center, Vector2f scale) :                           Shape(center, scale, 0.f) {}
 		Shape(Vector2f center, Vector2f scale, float angle) :              Shape(center, scale, angle, Color::Magenta) {}
 		Shape(Vector2f center, Vector2f scale, float angle, Color color) : color(color), center(center), scale(scale), angle(angle) {} // ну реально секас
