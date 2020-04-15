@@ -18,11 +18,11 @@ namespace My {
 		}
 
 		//____________________________________________________CONSTRUCTORS_____________________________________________________________
-		Circle() : Circle(30.f) {}
-		Circle(float radius) :                                                            radius(radius) {}
-		Circle(float radius, Vector2f center) :                                           radius(radius), Shape(center) {}
-		Circle(float radius, Vector2f center, Vector2f scale) :                           radius(radius), Shape(center, scale) {}
-		Circle(float radius, Vector2f center, Vector2f scale, float angle) :              radius(radius), Shape(center, scale, angle) {}
+		Circle() :																		  Circle(30.f) {}
+		Circle(float radius) :                                                            Circle(radius, {0.f, 0.f}) {}
+		Circle(float radius, Vector2f center) :                                           Circle(radius, center, {1.f, 1.f}) {}
+		Circle(float radius, Vector2f center, Vector2f scale) :                           Circle(radius, center, scale, 0.f) {}
+		Circle(float radius, Vector2f center, Vector2f scale, float angle) :              Circle(radius, center, scale, angle, Color::Magenta) {}
 		Circle(float radius, Vector2f center, Vector2f scale, float angle, Color color) : radius(radius), Shape(center, scale, angle, color) {} // ˝ÚÓ ÔÓÒÚÓ Œ’”»“≈À‹ÕŒ!
 		virtual ~Circle() = default;
 
