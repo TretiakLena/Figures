@@ -137,7 +137,12 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="Star.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Agregat.h" />
+    <ClInclude Include="Index.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Rectangle.h" />

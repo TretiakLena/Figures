@@ -1,15 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Interface.h"
-// убрал лишние хедеры
-
+#include <vector>
 using namespace sf;
 using namespace std;
 
 namespace My
 {
-
-	// очевидно, что нужен .cpp
 	class Shape : public IMove, public IDraw, public IScale, public IRotate {
 	public:
 		//_________________________IMOVE________________________________________
@@ -22,6 +19,7 @@ namespace My
 		}
 		void SetPosition(Vector2f xy)    override {
 			this->center = xy;
+			if(this->trail) this->RememberHistory(this->center);
 		}
 		void SetPosition(float xy)       override {
 			this->SetPosition(Vector2f(xy, xy));
@@ -61,21 +59,50 @@ namespace My
 				this->SetColor(this->GetColor()+Color(abs(r), abs(g), abs(b), abs(a)));
 			}
 		}
-		void SetColor(Color color)                   override {
+		void SetColor(Color color)               override {
 			this->color = color;
 		}
 
+		//_________________TRAIL__________________
+		virtual void RememberHistory(Vector2f xy) {
+			this->history.push_back(xy);
+		}
+		virtual void SwitchTrail() {
+			this->trail = !this->trail;
+			this->history.clear();
+		}
+		virtual void ForgetHistory() {
+			if (!this->history.empty()) {
+				this->center = this->history[this->history.size() - 1];
+				this->history.pop_back();
+			}
+		}
+
+		//______________________TRANSPARENT_________________________
+		virtual void SwitchTrans() {
+			this->trans = !this->trans;
+		}
+
+		//___________________________COPY____________________________
+		virtual Shape* Copy() abstract;
+		Shape(const Shape& copy) : Shape(copy.GetPosition(), copy.GetScale(), copy.GetAngle(), copy.GetColor()) {}
+		
 		//__________________________CONSTRUCTORS______________________________________
 		Shape() :                                                          Shape({0.f, 0.f}) {}
 		Shape(Vector2f center) :                                           Shape(center, {1.f, 1.f}) {}
 		Shape(Vector2f center, Vector2f scale) :                           Shape(center, scale, 0.f) {}
-		Shape(Vector2f center, Vector2f scale, float angle) :              Shape(center, scale, angle, Color::Magenta) {}
-		Shape(Vector2f center, Vector2f scale, float angle, Color color) : color(color), center(center), scale(scale), angle(angle) {} // ну реально секас
+		Shape(Vector2f center, Vector2f scale, float angle) :              Shape(center, scale, angle, Color::Yellow) {}
+		Shape(Vector2f center, Vector2f scale, float angle, Color color) : color(color), center(center), scale(scale), angle(angle), trail(false), trans(false) {
+			this->RememberHistory(this->center);
+		} 
 		virtual ~Shape() = default;
-	private:
-		Vector2f center;
-		Vector2f scale;
-		float    angle;
-		Color    color;
+	protected:
+		Vector2f         center;
+		Vector2f         scale;
+		float            angle;
+		Color            color;
+		bool             trail;
+		bool             trans;
+		vector<Vector2f> history;
 	};
 }

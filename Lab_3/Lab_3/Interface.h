@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-// убрал лишние хедеры
 
 using namespace sf;
 using namespace std;
